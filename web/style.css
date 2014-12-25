@@ -1,0 +1,13 @@
+body {
+/*  font-family: 'Lucida Grande','Lucida Sans Unicode', verdana, "メイリオ", meiryo, "MS PGothic", sans-serif; */
+  font-family: 'Lucida Grande','Lucida Sans Unicode',verdana, "メイリオ", meiryo, "ヒラギノ角ゴ Pro W3", "Hirag    ino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+}
+
+h3 {
+    font-size: 18px;
+    border-bottom: 1px dotted #999;
+}
+
+h2 {
+    font-size: 20px;
+}

@@ -1,0 +1,6 @@
+name: blsys-scraper
+description: A sample web application
+dependencies:
+  browser: any
+  crypto: any
+  http: any
