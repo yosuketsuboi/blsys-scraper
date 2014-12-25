@@ -14,7 +14,7 @@ void main() {
 
 class BlsysScraperClient {
   
-  static const SERVER_URL = 'http://192.168.56.5/5931/scraper.php';
+  static const SERVER_URL = 'http://192.168.56.5/blsys-scraper/scraper.php';
   
   List<Map> _patrolList = [{'dsmk': '634', 'dk' : 'jq_1f2_e2-jq_1f2_e5-jq_1f2_8u39op'}, {'dsmk': '589', 'dk' : 'id_1c1_nqu30c-id_1c1_nqu30g'}, {'dsmk': '611', 'dk' : 'j3_1dk_av'}];
 
