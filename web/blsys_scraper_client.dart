@@ -6,20 +6,48 @@ void main() {
   BlsysScraperClient client = new BlsysScraperClient();
   client.updateAll();
   
-  querySelector('#title a').onClick.listen((e) {
+  querySelector('#refresh').onClick.listen((e) {
     client.updateAll();
+    e.preventDefault();
+  });
+  
+  querySelector('#transfer').onClick.listen((e) {
+    if (client.index == 0) {
+      querySelector('#lt').style.display = 'inline';
+      querySelector('#gt').style.display = 'none';
+      client.index = 1;
+    } else {
+      querySelector('#gt').style.display = 'inline';
+      querySelector('#lt').style.display = 'none';
+      client.index = 0;
+    }
+    
+    client.refresh();
     e.preventDefault();
   });
 }
 
 class BlsysScraperClient {
+
+  static const SERVER_URL = 'scraper.php';
   
-  static const SERVER_URL = 'http://192.168.56.5/blsys-scraper/scraper.php';
+  List<List<Map>> _patrolList = [
+                                  [{'dsmk': '634', 'dk' : 'jq_1f2_e2-jq_1f2_e5-jq_1f2_8u39op'}, {'dsmk': '589', 'dk' : 'id_1c1_nqu30c-id_1c1_nqu30g'}, {'dsmk': '611', 'dk' : 'j3_1dk_av'}],
+                                  [{'dsmk': '539', 'dk' : 'gr_17a_1q8-gr_17a_nqu30b-gr_17a_nqu30h'}, {'dsmk': '539', 'dk' : 'gr_17b_as-gr_17b_8u39sk'}, {'dsmk': '732', 'dk' : 'ms_1qe_e2-ms_1qe_e4-ms_1qe_8u39oo'}]
+                                ];
   
-  List<Map> _patrolList = [{'dsmk': '634', 'dk' : 'jq_1f2_e2-jq_1f2_e5-jq_1f2_8u39op'}, {'dsmk': '589', 'dk' : 'id_1c1_nqu30c-id_1c1_nqu30g'}, {'dsmk': '611', 'dk' : 'j3_1dk_av'}];
+  int index = 0;
+  
+  void refresh() {
+    Node n;
+    while ((n = querySelector('#contents').firstChild) != null) {
+      n.remove(); 
+    }
+    updateAll();
+  }
 
   void updateAll() {
-    for (Map map in _patrolList) {
+    for (Map map in _patrolList[index]) {
       var queryString = _buildQueryParameter(map);
       _update(queryString);
     }

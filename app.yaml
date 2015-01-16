@@ -1,0 +1,17 @@
+application: blsys-scraper
+version: 1
+runtime: php
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /scraper.php
+  script: scraper.php
+
+- url: /
+  static_files: build/web/index.html
+  upload: build/web/index.html
+
+- url: /
+  static_dir: build/web
+  
