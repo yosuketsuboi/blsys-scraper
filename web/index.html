@@ -3,41 +3,65 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>blsys-scraper</title>
     
-    <script async type="application/dart" src="blsys_scraper_client.dart"></script>
-    <script async src="packages/browser/dart.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    
-    <link rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection">    
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css" media="screen,projection">
   </head>
+
   <body>
-    
+
+    <nav class="lighten-1" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><span id="gt">家 -&gt; JR</span><span id="lt" style="display: none;">JR -&gt; 家</span></a>
+          <ul class="right">
+            <li><a href="#" id="transfer"><i class="large mdi-action-swap-horiz"></i></a></li>
+            <li><a href="#" id="refresh"><i class="large mdi-navigation-refresh"></i></a></li>
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#" id="transfer-m"><i class="large mdi-action-swap-horiz"></i>&nbsp;方向切換</a></li>
+            <li><a href="#" id="refresh-m"><i class="large mdi-navigation-refresh"></i>&nbsp;最新に更新</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+      </div>
+    </nav>
+      
     <div class="container">
-      <h2 id="title"><a href="#" id="refresh"><i class="glyphicon glyphicon-repeat"></i></a>&nbsp;<a href="#" id="transfer"><i class="glyphicon glyphicon-transfer"></i></a>&nbsp;<span id="gt">家 -&gt; JR</span><span id="lt" style="display: none;">JR -&gt; 家</span></h2>
-      <div id="contents"></div>
+      <div class="row">
+        <div id="contents"></div>
+      </div>
     </div>
     
-    <div id="unit-template" style="display: none;">
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">Made by <a class="text-lighten-3" href="http://materializecss.com">Materialize</a></div>
+      </div>
+    </footer>
+    
+    <div id="unit-template" class="col s12 m4" style="display: none;">
       <h3 class="bus-stop"><a href="#"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;<span></span></h3>
       <small><span class="modified"></span>&nbsp;時点</small>
-      <table class="table table-bordered table-striped">
+      <table class="table bordered striped">
         <tr>
-          <th style="width: 75px;">定刻</th>
-          <th style="width: 75px;">到着予測</th>
+          <th>定刻</th>
+          <th>到着予測</th>
           <th>【系統】行き先</th>
-          <th style="width: 200px;">状況</th>
+          <th>状況</th>
         </tr>
       </table>
     </div>
+    
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    
+    <script async type="application/dart" src="assets/dart/blsys_scraper_client.dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+    
+    <script src="assets/js/init.js"></script>
 
   </body>
 </html>

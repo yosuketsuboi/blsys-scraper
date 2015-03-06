@@ -6,23 +6,28 @@ void main() {
   BlsysScraperClient client = new BlsysScraperClient();
   client.updateAll();
   
+  querySelector('#logo-container').onClick.listen((e) {
+    client.changeDirection();
+    e.preventDefault();
+  });
+  
   querySelector('#refresh').onClick.listen((e) {
     client.updateAll();
     e.preventDefault();
   });
   
+  querySelector('#refresh-m').onClick.listen((e) {
+    client.updateAll();
+    e.preventDefault();
+  });
+  
   querySelector('#transfer').onClick.listen((e) {
-    if (client.index == 0) {
-      querySelector('#lt').style.display = 'inline';
-      querySelector('#gt').style.display = 'none';
-      client.index = 1;
-    } else {
-      querySelector('#gt').style.display = 'inline';
-      querySelector('#lt').style.display = 'none';
-      client.index = 0;
-    }
-    
-    client.refresh();
+    client.changeDirection();
+    e.preventDefault();
+  });
+  
+  querySelector('#transfer-m').onClick.listen((e) {
+    client.changeDirection();
     e.preventDefault();
   });
 }
@@ -44,6 +49,19 @@ class BlsysScraperClient {
       n.remove(); 
     }
     updateAll();
+  }
+  
+  void changeDirection() {
+    if (index == 0) {
+      querySelector('#lt').style.display = 'inline';
+      querySelector('#gt').style.display = 'none';
+      index = 1;
+    } else {
+      querySelector('#gt').style.display = 'inline';
+      querySelector('#lt').style.display = 'none';
+      index = 0;
+    }
+    refresh();
   }
 
   void updateAll() {
