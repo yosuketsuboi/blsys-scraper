@@ -37,5 +37,3 @@ echo json_encode(array(
         'modified' => $modified,
         'results' => $results,
 ));
-
-header('Access-Control-Allow-Origin: *');

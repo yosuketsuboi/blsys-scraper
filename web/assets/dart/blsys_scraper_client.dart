@@ -44,11 +44,17 @@ class BlsysScraperClient {
   int index = 0;
   
   void refresh() {
+    // start refresh animation
+    querySelector('#refresh .mdi-navigation-refresh').classes.add('loading');
+    
     Node n;
-    while ((n = querySelector('#contents').firstChild) != null) {
+    while ((n = querySelector('#content .row').firstChild) != null) {
       n.remove(); 
     }
     updateAll();
+
+    // stop refresh animation
+    querySelector('#refresh .mdi-navigation-refresh').classes.remove('loading');
   }
   
   void changeDirection() {
@@ -80,33 +86,45 @@ class BlsysScraperClient {
     sha1.add(UTF8.encode(queryString));
     var id = CryptoUtils.bytesToHex(sha1.close());
     
+    Element updatedUnit = querySelector('#unit-template').clone(true);
+    // start reload animation
+    _toggleCardSymbol(updatedUnit, true);
+    
+    updatedUnit.setAttribute('id', 'I' + id);
+    Element timetableRow = querySelector('#content .row');
+    Element unit = timetableRow.querySelector('#I' + id);
+    if (unit == null) {
+      timetableRow.children.add(updatedUnit);
+    } else {
+      unit.replaceWith(updatedUnit);
+    }
+    
     HttpRequest.getString(url).then((resText) {
       var map = JSON.decode(resText);
-      Element updatedUnit = querySelector('#unit-template').clone(true);
       updatedUnit.querySelector('.bus-stop span').text = map['bus_stop'];
-      updatedUnit.querySelector('.bus-stop a').onClick.listen((e) {
-        _update(queryString);
-        e.preventDefault();
-      });
-      updatedUnit.querySelector('.modified').text = map['modified'];
+      // TODO card refresh
+//      updatedUnit.querySelector('.modified a').onClick.listen((e) {
+//        _update(queryString);
+//        e.preventDefault();
+//      });
+      updatedUnit.querySelector('.modified span').text = map['modified'];
       TableElement table = updatedUnit.querySelector('.table');
-      for (var r in map['results']) {
+      for (Map<String, String> r in map['results']) {
         table.addRow();
-        table.rows.last.addCell().text = r['scheduled']; 
-        table.rows.last.addCell().text = r['actual'];
-        table.rows.last.addCell().text = r['destination'];
-        table.rows.last.addCell().text = r['text'];
+        table.rows.last.addCell().appendText(r['scheduled']); 
+        table.rows.last.addCell().appendText(r['actual']);
+        table.rows.last.addCell().appendHtml(r['destination']
+            .replaceFirst('【', '[')
+            .replaceFirst('】', ']<br>'));
+        table.rows.last.addCell().appendHtml(r['text']
+            .replaceFirst('まもなく', 'まもなく<br>')
+            .replaceFirst('遅れ', '<br>遅れ')
+            .replaceFirst('です。', '')
+            .replaceFirst('します。', ''));
       }
       updatedUnit.setAttribute('style', '');
-
-      Element contents = querySelector('#contents');
-      updatedUnit.setAttribute('id', 'I' + id);
-      Element unit = contents.querySelector('#I' + id);
-      if (unit == null) {
-        contents.children.add(updatedUnit);
-      } else {
-        unit.replaceWith(updatedUnit);
-      }
+      // stop reload animation
+      _toggleCardSymbol(updatedUnit, false);
     });
   }
   
@@ -119,6 +137,18 @@ class BlsysScraperClient {
       queryString += key + '=' + paramMap[key];
     }
     return queryString;
+  }
+  
+  void _toggleCardSymbol(Element unit, bool loading) {
+    if (loading) {
+      unit.querySelector('.mdi-action-autorenew').classes.add('loading');
+      unit.querySelector('.mdi-action-autorenew').style.display = 'inline';
+      unit.querySelector('.mdi-maps-place').style.display = 'none';
+    } else {
+      unit.querySelector('.mdi-maps-place').style.display = 'inline';
+      unit.querySelector('.mdi-action-autorenew').style.display = 'none';
+      unit.querySelector('.mdi-action-autorenew').classes.remove('loading');
+    }
   }
 
 }

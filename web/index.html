@@ -14,25 +14,23 @@
 
     <nav class="lighten-1" role="navigation">
       <div class="container">
-        <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><span id="gt">家 -&gt; JR</span><span id="lt" style="display: none;">JR -&gt; 家</span></a>
+        <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo center"><span id="gt">家&nbsp;<i class="mdi-navigation-arrow-forward"></i>&nbsp;JR</span><span id="lt" style="display: none;">JR&nbsp;<i class="mdi-navigation-arrow-forward"></i>&nbsp;家</span></a>
           <ul class="right">
-            <li><a href="#" id="transfer"><i class="large mdi-action-swap-horiz"></i></a></li>
-            <li><a href="#" id="refresh"><i class="large mdi-navigation-refresh"></i></a></li>
+            <li><a href="#" id="transfer" class="hide-on-med-and-down"><i class="mdi-action-swap-horiz"></i></a></li>
+            <li><a href="#" id="refresh"><i class="mdi-navigation-refresh"></i></a></li>
           </ul>
 
           <ul id="nav-mobile" class="side-nav">
-            <li><a href="#" id="transfer-m"><i class="large mdi-action-swap-horiz"></i>&nbsp;方向切換</a></li>
-            <li><a href="#" id="refresh-m"><i class="large mdi-navigation-refresh"></i>&nbsp;最新に更新</a></li>
+            <li><a href="#" id="transfer-m"><i class="mdi-action-swap-horiz"></i>&nbsp;方向切換</a></li>
+            <li><a href="#" id="transfer-m"><i class="mdi-action-swap-horiz"></i>&nbsp;方向切換</a></li>
           </ul>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         </div>
       </div>
     </nav>
       
-    <div class="container">
-      <div class="row">
-        <div id="contents"></div>
-      </div>
+    <div id="content" class="container">
+      <div class="row"></div>
     </div>
     
     <footer class="page-footer">
@@ -41,17 +39,26 @@
       </div>
     </footer>
     
-    <div id="unit-template" class="col s12 m4" style="display: none;">
-      <h3 class="bus-stop"><a href="#"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;<span></span></h3>
-      <small><span class="modified"></span>&nbsp;時点</small>
-      <table class="table bordered striped">
-        <tr>
-          <th>定刻</th>
-          <th>到着予測</th>
-          <th>【系統】行き先</th>
-          <th>状況</th>
-        </tr>
-      </table>
+    <!-- template -->
+    <div id="unit-template" class="col s12 m6 timetable" style="display: none;">
+      <div class="card">
+        <div class="card-content">
+          <div class="bus-stop card-title grey-text text-darken-4">
+            <i class="mdi-maps-place"></i><i class="mdi-action-autorenew" style="display: none"></i>
+            <span></span>
+            <a href="#"><i class="mdi-navigation-more-vert right"></i></a>
+          </div>
+          <p class="modified"><span></span>&nbsp;現在</p>
+          <table class="table bordered">
+            <tr>
+              <th style="width: 45px"><i class="mdi-action-schedule"></i></th>
+              <th style="width: 45px"><i class="mdi-action-restore"></i></th>
+              <th><i class="mdi-maps-directions-bus"></i></th>
+              <th style="width: 70px"><i class="mdi-action-info-outline"></i></th>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
     
     <!-- scripts -->
@@ -62,6 +69,39 @@
     <script async src="packages/browser/dart.js"></script>
     
     <script src="assets/js/init.js"></script>
+    
+    <!-- for debug
+      <div class="col s12 m6">
+        <h5 class="bus-stop"><i class="mdi-maps-directions-bus"></i>&nbsp;<span>test</span></h5>
+        <small class="modified"><a href="#"><i class="mdi-navigation-refresh"></i></a>&nbsp;<span>00:00</span></small>
+        <table class="table bordered striped">
+          <tr>
+            <th><i class="mdi-action-schedule"></i></th>
+            <th><i class="mdi-action-restore"></i></th>
+            <th><i class="mdi-content-flag"></i></th>
+            <th><i class="mdi-action-info-outline"></i></th>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>00:00</td>
+            <td>test</td>
+            <td>test</td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>00:00</td>
+            <td>test</td>
+            <td>test</td>
+          </tr>
+          <tr>
+            <td>00:00</td>
+            <td>00:00</td>
+            <td>test</td>
+            <td>test</td>
+          </tr>
+        </table>
+      </div>
+    -->
 
   </body>
 </html>

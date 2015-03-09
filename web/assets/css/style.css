@@ -1,17 +1,89 @@
 body {
-/*  font-family: 'Lucida Grande','Lucida Sans Unicode', verdana, "メイリオ", meiryo, "MS PGothic", sans-serif; */
-  font-family: 'Lucida Grande','Lucida Sans Unicode',verdana, "メイリオ", meiryo, "ヒラギノ角ゴ Pro W3", "Hirag    ino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+  font-family: "Roboto", "Lucida Grande", "Lucida Sans Unicode", verdana, "メイリオ", meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
-h3 {
-    font-size: 18px;
-    border-bottom: 1px dotted #999;
+#content {
+  padding-top: 36px;
+  padding-bottom: 70px;
 }
 
-h2 {
-    font-size: 20px;
+.timetable {
+  margin-top: 20px;
 }
 
 .icon-block {
   padding: 0 15px;
 }
+
+.loading {
+  -webkit-animation: spin 1.5s linear infinite;
+  -moz-animation: spin 1.5s linear infinite;
+  -ms-animation: spin 1.5s linear infinite;
+  -o-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite; 
+}
+
+@-webkit-keyframes spin {
+	0% {-webkit-transform: rotate(0deg);}
+	100% {-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin {
+	0% {-moz-transform: rotate(0deg);}
+	100% {-moz-transform: rotate(360deg);}
+}
+@-ms-keyframes spin {
+	0% {-ms-transform: rotate(0deg);}
+	100% {-ms-transform: rotate(360deg);}
+}
+@-o-keyframes spin {
+	0% {-o-transform: rotate(0deg);}
+	100% {-o-transform: rotate(360deg);}
+}
+@keyframes spin {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+/* Patch for materialize.css */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 56px;
+  z-index: 998;
+}
+
+footer.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 998;
+}
+
+nav .brand-logo.center {
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  nav a.button-collapse {
+    display: block;
+  }
+}
+
+/* End patch */
