@@ -1,11 +1,11 @@
 <?php
 require_once('simple_html_dom.php');
 
-$context = array(
-    'http' => array(
-        'proxy' => 'tcp://157.109.160.180:8080',
-    ),
-);
+//$context = array(
+//    'http' => array(
+//        'proxy' => 'tcp://157.109.160.180:8080',
+//    ),
+//);
 
 if (!(array_key_exists('dsmk', $_GET) && strlen($_GET['dsmk']) > 0 && array_key_exists('dk', $_GET) && strlen($_GET['dk']) > 0)) {
     header('HTTP/1.1 400 Bad Request');
